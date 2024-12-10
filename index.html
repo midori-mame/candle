@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candle!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    #workspace {
+      width:  600px;
+      height: 600px;
+      border: 2px dashed #ccc;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      background-color: #ccc; /* 회색 배경 고정 */
+    }
+    .emoji, .image {
+      position: absolute;
+      cursor: grab;
+    }
+    .emoji {
+      font-size: 2rem;
+    }
+    #emoji-list {
+      margin: 10px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .emoji-item {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    #save-button {
+      margin: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <h2>Make your own, one-and-only candle</h2>
+
+  <div id="emoji-list">
+    <span class="emoji-item">😊</span>
+    <span class="emoji-item">🎉</span>
+    <span class="emoji-item">🔥</span>
+    <span class="emoji-item">❤️</span>
+    <span class="emoji-item">🌟</span>
+  </div>
+
+  <div id="emoji-list">
+    <span class="emoji-item">🤬</span>
+    <span class="emoji-item">💣</span>
+    <span class="emoji-item">🐷</span>
+    <span class="emoji-item">❌</span>
+    <span class="emoji-item">💪</span>
+  </div>
+
+  <div id="emoji-list">
+    <span class="emoji-item">❤️</span>
+    <span class="emoji-item">🧡</span>
+    <span class="emoji-item">💛</span>
+    <span class="emoji-item">💚</span>
+    <span class="emoji-item">💙</span>
+    <span class="emoji-item">💜</span>
+  </div>
+  <!-- 작업 영역 -->
+  <div id="workspace">
+    <!-- 고정된 이미지 -->
+    <img src="./image/candle.png" alt="Fixed Image" class="image" style="left: 195px; top: 50px; width: 200px;" crossOrigin="anonymous">
+  </div>
+
+  <!-- 저장 버튼 -->
+  <button id="save-button">Save as Image</button>
+
+  <script src="canvas.js"></script>
+</body>
+</html>
