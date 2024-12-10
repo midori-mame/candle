@@ -18,31 +18,52 @@ emojiList.forEach((emoji) => {
 
 // 드래그 기능 활성화
 function enableDrag(element) {
-    let isDragging = false;
+  let isDragging = false;
+  let offsetX, offsetY;
 
-    element.addEventListener('mousedown', (e) => {
+  const onStart = (e) => {
+    e.preventDefault();
     isDragging = true;
-    const offsetX = e.clientX - element.offsetLeft;
-    const offsetY = e.clientY - element.offsetTop;
 
-    const moveElement = (moveEvent) => {
-        if (!isDragging) return;
-        element.style.left = `${moveEvent.clientX - offsetX}px`;
-        element.style.top = `${moveEvent.clientY - offsetY}px`;
-    };
+    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
 
-    const stopDragging = () => {
-        isDragging = false;
-        document.removeEventListener('mousemove', moveElement);
-        document.removeEventListener('mouseup', stopDragging);
-    };
+    offsetX = clientX - element.offsetLeft;
+    offsetY = clientY - element.offsetTop;
 
-    document.addEventListener('mousemove', moveElement);
-    document.addEventListener('mouseup', stopDragging);
-    });
+    // 이벤트 리스너 추가
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('touchend', onEnd);
+  };
+
+  const onMove = (e) => {
+    if (!isDragging) return;
+
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+    element.style.left = `${clientX - offsetX}px`;
+    element.style.top = `${clientY - offsetY}px`;
+  };
+
+  const onEnd = () => {
+    isDragging = false;
+
+    // 이벤트 리스너 제거
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onEnd);
+    document.removeEventListener('touchmove', onMove);
+    document.removeEventListener('touchend', onEnd);
+  };
+
+  // 마우스 및 터치 이벤트 리스너
+  element.addEventListener('mousedown', onStart);
+  element.addEventListener('touchstart', onStart, { passive: false });
 }
 
-// 고정된 이미지 드래그 가능하게 설정
+
 const fixedImage = document.querySelector('.image');
 
 // 저장 버튼 클릭 시 workspace를 이미지로 저장
