@@ -153,7 +153,7 @@ window.addEventListener("resize", () => {
 
     img.onload = () => {
       const aspectRatio = img.width / img.height;
-      const workspaceWidth = document.body.clientWidth * 0.8;
+      const workspaceWidth = document.body.clientWidth;
       const workspaceHeight = workspaceWidth / aspectRatio;
 
       workspace.style.width = `${workspaceWidth}px`;
