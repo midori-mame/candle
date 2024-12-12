@@ -6,10 +6,21 @@
   <title>Candle!</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background-color: #f4f4f4;
+    }
+    .container {
+      text-align: center; 
+      width: 100%;
+      max-width: 1200px; /* 가로 최대 길이 */
+      margin: 0 auto; /* 화면 중앙 정렬 */
+      padding: 16px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     #workspace {
       width:  100%;
@@ -20,11 +31,13 @@
       overflow: hidden;
       background-color: #ccc; /* 회색 배경 고정 */
     }
-    .emoji, .image {
+    #fixed-image {
       position: absolute;
       cursor: grab;
     }
     .emoji {
+      position: absolute;
+      cursor: grab;
       font-size: 2rem;
     }
     #emoji-list {
@@ -43,45 +56,60 @@
       font-size: 1rem;
       cursor: pointer;
     }
+    .custom-button {
+        padding: 10px 10px;
+        font-size: 16px;
+        color: rgb(0, 0, 0);
+        background-color: rgb(212, 212, 212);
+        border: none;
+        border-radius: 5px; /* 둥근 모서리 */
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* 애니메이션 */
+    }
+
+    /* 마우스를 올렸을 때 */
+    .custom-button:hover {
+        background-color: rgb(135, 217, 250);
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-  <h2>촛불을 밝혀요</h2>
+  <div class="container">
+    <h2>촛불을 밝혀요</h2>
+    이모지를 클릭해 촛불 위에 추가할 수 있습니다.<br>
+    촛불과 이모지를 드래그해 이동할 수 있습니다.<br><br>
+    <div id="emoji-list">
+      <span class="emoji-item">😊</span>
+      <span class="emoji-item">🎉</span>
+      <span class="emoji-item">🔥</span>
+      <span class="emoji-item">🌟</span>
+      <span class="emoji-item">😭</span>
+    </div>
+    <div id="emoji-list">
+      <span class="emoji-item">🤬</span>
+      <span class="emoji-item">💣</span>
+      <span class="emoji-item">🐷</span>
+      <span class="emoji-item">❌</span>
+      <span class="emoji-item">💪</span>
+    </div>
+    <div id="emoji-list">
+      <span class="emoji-item">❤️</span>
+      <span class="emoji-item">🧡</span>
+      <span class="emoji-item">💛</span>
+      <span class="emoji-item">💚</span>
+      <span class="emoji-item">💙</span>
+      <span class="emoji-item">💜</span>
+    </div>
+    <!-- 저장 버튼 -->
+    <button class="custom-button" id="save-button">이미지 저장하기</button>
+    <!-- 작업 영역 -->
+    <div id="workspace">
+      <!-- 고정된 이미지 -->
+      <img src="./candle.png" alt="Candle Image" id="fixed-image" style="left: 0px; top: 50px; width: 200px;" crossOrigin="anonymous">
+    </div>
 
-  <div id="emoji-list">
-    <span class="emoji-item">😊</span>
-    <span class="emoji-item">🎉</span>
-    <span class="emoji-item">🔥</span>
-    <span class="emoji-item">❤️</span>
-    <span class="emoji-item">🌟</span>
-    <span class="emoji-item">😭</span>
   </div>
-
-  <div id="emoji-list">
-    <span class="emoji-item">🤬</span>
-    <span class="emoji-item">💣</span>
-    <span class="emoji-item">🐷</span>
-    <span class="emoji-item">❌</span>
-    <span class="emoji-item">💪</span>
-  </div>
-
-  <div id="emoji-list">
-    <span class="emoji-item">❤️</span>
-    <span class="emoji-item">🧡</span>
-    <span class="emoji-item">💛</span>
-    <span class="emoji-item">💚</span>
-    <span class="emoji-item">💙</span>
-    <span class="emoji-item">💜</span>
-  </div>
-  <!-- 작업 영역 -->
-  <div id="workspace">
-    <!-- 고정된 이미지 -->
-    <img src="./candle.png" alt="Candle Image" class="image" style="left: 195px; top: 50px; width: 200px;" crossOrigin="anonymous">
-  </div>
-
-  <!-- 저장 버튼 -->
-  <button id="save-button">Save as Image</button>
 
   <script src="canvas.js"></script>
 </body>
