@@ -1,5 +1,6 @@
 const emojiList = document.querySelectorAll('.emoji-item');
 const workspace = document.getElementById('workspace');
+const container = document.getElementById('container');
 const saveButton = document.getElementById('save-button');
 const resetButton = document.getElementById('reset-button');
 const fixedImage = document.getElementById('fixed-image');
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 window.addEventListener("resize", () => {
   const currentBackground = workspace.style.backgroundImage;
   if (currentBackground) {
@@ -153,14 +155,15 @@ window.addEventListener("resize", () => {
 
     img.onload = () => {
       const aspectRatio = img.width / img.height;
-      const workspaceWidth = document.body.clientWidth * 0.9;
+      const workspaceWidth = container.offsetWidth * 0.9;
       const workspaceHeight = workspaceWidth / aspectRatio;
 
       workspace.style.width = `${workspaceWidth}px`;
       workspace.style.height = `${workspaceHeight}px`;
+      workspace.style.backgroundImage = `url(${img.src})`;
     };
   }
-});
+}); 
 
 // 확대 버튼
 zoomInButton.addEventListener("click", () => {
