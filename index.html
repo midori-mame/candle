@@ -16,7 +16,7 @@
     .container {
       text-align: center; 
       width: 100%;
-      max-width: 1200px; /* 가로 최대 길이 */
+      max-width: 900px; /* 가로 최대 길이 */
       margin: 0 auto; /* 화면 중앙 정렬 */
       padding: 16px;
       background: white;
@@ -30,6 +30,8 @@
       position: relative;
       overflow: hidden;
       background-color: #ccc; /* 회색 배경 고정 */
+      background-size: cover;
+      background-position: center;
     }
     #fixed-image {
       position: absolute;
@@ -51,25 +53,30 @@
       cursor: pointer;
     }
     #save-button {
-      margin: 20px;
+      margin: 10px;
       padding: 10px 20px;
       font-size: 1rem;
       cursor: pointer;
     }
     .custom-button {
-        padding: 10px 10px;
-        font-size: 16px;
-        color: rgb(0, 0, 0);
-        background-color: rgb(212, 212, 212);
-        border: none;
-        border-radius: 5px; /* 둥근 모서리 */
-        cursor: pointer;
-        transition: background-color 0.3s ease; /* 애니메이션 */
+      padding: 10px 20px;
+      font-size: 16px;
+      color: rgb(255, 255, 255);
+      background-color: rgb(41, 95, 197);
+      border: none;
+      border-radius: 5px; /* 둥근 모서리 */
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* 애니메이션 */
     }
 
     /* 마우스를 올렸을 때 */
     .custom-button:hover {
-        background-color: rgb(135, 217, 250);
+        background-color: rgb(85, 169, 238);
+    }
+
+    /* 실제 input[type="file"] 숨기기 */
+    input[type="file"] {
+    display: none;
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -101,14 +108,22 @@
       <span class="emoji-item">💙</span>
       <span class="emoji-item">💜</span>
     </div>
-    <!-- 저장 버튼 -->
-    <button class="custom-button" id="save-button">이미지 저장하기</button>
+    <!-- 버튼 -->
+    <label class="custom-button"> 배경 선택
+      <input type="file" id="fileInput" accept="image/*">
+    </label>
+    <button class="custom-button" id="save-button">이미지 저장</button>
+    <button class="custom-button" id="reset-button">초기화</button>
+    <div class="controls">
+      촛불 크기를...   
+      <button class="custom-button" id="zoomIn">크게</button>
+      <button class="custom-button" id="zoomOut">작게</button>
+    </div>
     <!-- 작업 영역 -->
     <div id="workspace">
       <!-- 고정된 이미지 -->
-      <img src="./candle.png" alt="Candle Image" id="fixed-image" style="left: 0px; top: 50px; width: 200px;" crossOrigin="anonymous">
+      <img src="./candle.png" alt="Candle Image" class="image" id="fixed-image" style="left: 50%; top: 50%; width: 100px;" crossOrigin="anonymous" >
     </div>
-
   </div>
 
   <script src="canvas.js"></script>
