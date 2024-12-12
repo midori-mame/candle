@@ -1,6 +1,7 @@
 const emojiList = document.querySelectorAll('.emoji-item');
 const workspace = document.getElementById('workspace');
 const saveButton = document.getElementById('save-button');
+const fixedImage = document.getElementById('fixed-image');
 
 // 이모지 추가 및 드래그 기능
 emojiList.forEach((emoji) => {
@@ -63,8 +64,7 @@ function enableDrag(element) {
   element.addEventListener('touchstart', onStart, { passive: false });
 }
 
-
-const fixedImage = document.querySelector('.image');
+enableDrag(fixedImage);
 
 // 저장 버튼 클릭 시 workspace를 이미지로 저장
 saveButton.addEventListener('click', () => {
