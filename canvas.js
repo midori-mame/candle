@@ -5,6 +5,7 @@ const resetButton = document.getElementById('reset-button');
 const fixedImage = document.getElementById('fixed-image');
 const zoomInButton = document.getElementById("zoomIn");
 const zoomOutButton = document.getElementById("zoomOut");
+let currentScale = 1; // 초기 배율
 
 // 이모지 추가 및 드래그 기능
 emojiList.forEach((emoji) => {
@@ -83,6 +84,9 @@ function reset(){
     image.style.top = defaultBackgroundPosition.top;
     image.style.transform = defaultBackgroundPosition.transform;
   }
+
+  currentScale = 1
+  updateImageSize();
 }
 
 resetButton.addEventListener("click", () => {
@@ -157,8 +161,6 @@ window.addEventListener("resize", () => {
     };
   }
 });
-
-let currentScale = 1; // 초기 배율
 
 // 확대 버튼
 zoomInButton.addEventListener("click", () => {
